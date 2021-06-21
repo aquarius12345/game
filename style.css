@@ -1,0 +1,16 @@
+body {
+    display: flex;
+}
+
+#game-intro {
+    width: 800px;
+    height: 600px;
+    background-color: rgb(243, 236, 193);
+
+}
+
+#game-board {
+    background-color: pink;
+    width: 500px;
+    height: 600px;
+}
