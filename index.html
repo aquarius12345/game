@@ -8,10 +8,20 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="game-intro"></div>
-
     <div id="game-board">
-        <canvas id="canvas" width="500" height="800"></canvas>
+      <div class="container">
+        <div id="score-board">Score:<span id="score">0</span></div>
+        <div id="life-board">Life:<span id="life">5</span></div>
+      </div>
+      
+      <canvas id="canvas" width="600" height="400"></canvas>
+      <button id="start-btn">Start</button>
     </div>
+
+    <div id="game-intro">
+      <div id="intro-box"></div>
+    </div>
+
+    <script type="text/javascript" src="./script.js"></script>
 </body>
 </html>

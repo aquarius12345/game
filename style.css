@@ -1,16 +1,48 @@
 body {
     display: flex;
-}
-
-#game-intro {
-    width: 800px;
-    height: 600px;
-    background-color: rgb(243, 236, 193);
-
+    margin: 0;
 }
 
 #game-board {
+    width: 800px;
+    height: 600px;
     background-color: pink;
+
+}
+
+#canvas {
+  margin-top: 20px;
+  margin-left: 90px;
+}
+
+#game-intro {
     width: 500px;
     height: 600px;
+    background-color: rgb(194, 141, 243);
+}
+
+#intro-box {
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 40px;
+    background-color: rgb(161, 232, 241);
+}
+
+#start-btn {
+    padding: 30px 50px;
+    font-size: 2rem;
+    background-color: palevioletred;
+    border-style: none;
+    margin-top: 10px;
+    margin-left: 290px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+#life-board {
+    margin-left: 30px;
 }
