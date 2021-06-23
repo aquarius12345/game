@@ -34,6 +34,7 @@ window.onload = () => {
   const scoreElement = document.getElementById('score');
   const lifeElement = document.getElementById('life');
   const cupcakes = [];
+  const poisonBottles = [];
 
 
   let animationId = null;
@@ -70,7 +71,7 @@ window.onload = () => {
       stopGame();
       setTimeout(() => {
         gameOver();
-      },2000);
+      },1500);
     }else{
       animationId = requestAnimationFrame(updateCanvas); 
     }
@@ -119,7 +120,7 @@ window.onload = () => {
       ctx.drawImage(this.img, this.posX, this.posY, canvas.width, 450);
     }
   }
-  const background = new Background("./images/blueSky.png");
+  const background = new Background("./images/mountain-night.png");
 
   //.....................Unicorn.................................
   class Unicorn {
@@ -160,7 +161,7 @@ window.onload = () => {
     }
 
     moveDown() {
-      if(this.posY < 300){
+      if(this.posY < 250){
         this.posY += this.speed;
       } 
     }
@@ -191,7 +192,7 @@ window.onload = () => {
     }
   }
 
-  const unicorn = new Unicorn("./images/unicorn.png", 220, 300, 130, 100);
+  const unicorn = new Unicorn("./images/llama-pixel.png", 220, 250, 180, 150);
 
   //......................Cupcakes.................................
   class Obstacle {
@@ -238,7 +239,7 @@ window.onload = () => {
     
     // const cupcake = new Obstacle("./images/cupcake.png", posX, posY, 60, 60);
     // cupcakes.push(cupcake);
-    cupcakes.push(new Obstacle("./images/cupcake.png", posX, this.posY, 60, 60, 3)); 
+    cupcakes.push(new Obstacle("./images/veggies-paper.png", posX, this.posY, 50, 50, 3)); 
   }
 
   function updateCupcakes() {
@@ -252,8 +253,6 @@ window.onload = () => {
   }
  
   //.......................Poison...................................
-  const poisonBottles = [];
-
   function createPoison() {
     const posX = Math.floor(Math.random()*300) + 30;
   
@@ -264,12 +263,6 @@ window.onload = () => {
     for(let i = 0; i < poisonBottles.length; i += 1) {
       poisonBottles[i].move();
       poisonBottles[i].draw();
-      // if(poisonBottles[i] > canvas.height){
-      //   poisonBottles.shift();
-      // }
-      // if(unicorn.checkCollision(poisonBottles[i])){
-      //   return score-=1;
-      // }
     }
     if(frames % 300 === 0) {
       createPoison();
