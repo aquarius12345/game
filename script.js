@@ -24,7 +24,7 @@ window.onload = () => {
   //...................Start...............................
   function startGame() {
     const music = new Audio("./bensound-littleidea.mp3");
-    music.play();
+    // music.play();
     updateCanvas();  
     
   }
@@ -32,27 +32,50 @@ window.onload = () => {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext('2d');
   const scoreElement = document.getElementById('score');
+  const lifeElement = document.getElementById('life');
+  const cupcakes = [];
+
 
   let animationId = null;
   let frames = 0;
   let score = 0;
+  let life = 5;
 
   function updateCanvas() {
     frames += 1;
     showScore();
+    showLife();
     clearCanvas();
     background.draw();
     unicorn.draw();
-
-    // const crashCupcake = updateCupcakes();
-    // if(crashCupcake){
-    //   score += 1;
-    // }
-
     updateCupcakes();
+
+    for(let i=0; i<cupcakes.length; i+=1){
+      if(unicorn.checkCollision(cupcakes[i])){
+        cupcakes.splice(i, 1);
+        score += 1;
+      }
+    }
+
     updatePoisons();
-    animationId = requestAnimationFrame(updateCanvas); 
+
+    for(let i=0; i<poisonBottles.length; i+=1) {
+      if(unicorn.checkCollision(poisonBottles[i])){
+        poisonBottles.splice(i, 1);
+        life -= 1;
+      }  
+    }
+
+    if(life <= 0){
+      stopGame();
+      setTimeout(() => {
+        gameOver();
+      },2000);
+    }else{
+      animationId = requestAnimationFrame(updateCanvas); 
+    }
   }
+
   //...................Clear.................................
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -61,6 +84,11 @@ window.onload = () => {
   function showScore() {
     scoreElement.innerHTML = score;
   }
+  //.................Life Points.............................
+  function showLife() {
+    lifeElement.innerHTML = life;
+  }
+
   //.................Stop Game...............................
   function stopGame() {
     cancelAnimationFrame(animationId);
@@ -70,11 +98,11 @@ window.onload = () => {
     ctx.fillStyle = 'violet';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'pink';
-    ctx.font = '100px Arial'
-    ctx.fillText('GAME OVER', 250, 200);
+    ctx.font = '50px Arial'
+    ctx.fillText('GAME OVER', 150, 200);
   }
 
-  //.................Background..............................
+  //..................Background..............................
   class Background {
     constructor(source) {
       this.posX = 0;
@@ -93,7 +121,7 @@ window.onload = () => {
   }
   const background = new Background("./images/blueSky.png");
 
-  //.....................Unicorn..................................
+  //.....................Unicorn.................................
   class Unicorn {
     constructor(source, x, y, w, h){
       this.posX = x;
@@ -138,19 +166,19 @@ window.onload = () => {
     }
     
     top() {
-      this.posY;
+      return this.posY;
     }
 
     bottom() {
-      this.posY + this.height;
+      return this.posY + this.height;
     }
 
     left() {
-      this.posX;
+      return this.posX;
     }
 
     right() {
-      this.posX + this.width;
+      return this.posX + this.width;
     }
 
     checkCollision(obstacle) {
@@ -162,9 +190,10 @@ window.onload = () => {
       );
     }
   }
+
   const unicorn = new Unicorn("./images/unicorn.png", 220, 300, 130, 100);
 
-  //.....................Cupcakes.................................
+  //......................Cupcakes.................................
   class Obstacle {
     constructor(source, x, y, w, h, s){
       this.posX = x;
@@ -187,51 +216,42 @@ window.onload = () => {
     }
 
     top() {
-      this.posY;
+      return this.posY;
     }
 
     bottom() {
-      this.posY + this.height;
+      return this.posY + this.height;
     }
 
     left() {
-      this.posX;
+      return this.posX;
     }
 
     right() {
-      this.posX + this.width;
+      return this.posX + this.width;
     }
   }
 
-  const cupcakes = [];
-
+  
   function createCupcake() {
     const posX = Math.floor(Math.random()*400) + 20;
-    //const posY = Math.floor(Math.random()*canvas.height);
     
     // const cupcake = new Obstacle("./images/cupcake.png", posX, posY, 60, 60);
     // cupcakes.push(cupcake);
-    cupcakes.push(new Obstacle("./images/cupcake.png", posX, this.posY, 60, 60, 3)); 
     cupcakes.push(new Obstacle("./images/cupcake.png", posX, this.posY, 60, 60, 3)); 
   }
 
   function updateCupcakes() {
     for(let i = 0; i < cupcakes.length; i += 1) {
       cupcakes[i].move();
-      cupcakes[i].draw();
-      if(cupcakes[i] > canvas.height){
-        cupcakes.shift();
-      }
-      // if(unicorn.checkCollision(cupcakes[i])){
-      //   return true;
-      // }
+      cupcakes[i].draw(); 
     }
-    if(frames % 60 === 0) {
+    if(frames % 30 === 0) {
       createCupcake();
     }
   }
-
-  //......................Poison...................................
+ 
+  //.......................Poison...................................
   const poisonBottles = [];
 
   function createPoison() {
@@ -244,10 +264,10 @@ window.onload = () => {
     for(let i = 0; i < poisonBottles.length; i += 1) {
       poisonBottles[i].move();
       poisonBottles[i].draw();
-      if(poisonBottles[i] > canvas.height){
-        poisonBottles.shift();
-      }
-      // if(unicorn.checkCollisionCupcake(poisonBottles[i])){
+      // if(poisonBottles[i] > canvas.height){
+      //   poisonBottles.shift();
+      // }
+      // if(unicorn.checkCollision(poisonBottles[i])){
       //   return score-=1;
       // }
     }
