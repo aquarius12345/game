@@ -81,10 +81,12 @@ window.onload = () => {
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
+
   //.................Show Score..............................
   function showScore() {
     scoreElement.innerHTML = score;
   }
+  
   //.................Life Points.............................
   function showLife() {
     lifeElement.innerHTML = life;
@@ -94,6 +96,7 @@ window.onload = () => {
   function stopGame() {
     cancelAnimationFrame(animationId);
   }
+
   //.................Game Over...............................
   function gameOver() {
     ctx.fillStyle = 'violet';
@@ -101,7 +104,8 @@ window.onload = () => {
     ctx.fillStyle = 'pink';
     ctx.font = '50px Arial'
     ctx.fillText('GAME OVER', 150, 200);
-    //let img = new Image();
+    
+    // let img = new Image();
     // img.src = "./images/game-over.png";
 
     // img.onload = function () {
