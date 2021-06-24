@@ -9,17 +9,35 @@
 </head>
 <body>
     <div id="game-board">
+
+    <!-------------Game Board with Canvas------------------------------>
       <div class="container">
         <div id="score-board">Score:<span id="score">0</span></div>
         <div id="life-board">Life:<span id="life">5</span></div>
       </div>
       
       <canvas id="canvas" width="600" height="400"></canvas>
-      <button id="start-btn">Start</button>
+      <button id="start-btn">START</button>
     </div>
-
+    
+    <!---------------Left Game Presentation Board----------------------->
     <div id="game-intro">
-      <div id="intro-box"></div>
+
+      <div id="intro-box">
+        <div class="title">
+          <h2>Feed</h2>
+          <h1>Llama!<img id="veggies" src="./images/fresh-veggies.png"/></h1>
+          <hr>
+        </div>
+        
+        <p><img class="heart" src="images/2995534.png">Feed cute Llama with Organic food and Skip the poisons.</p>
+        <br>
+        <p><img class="heart" src="images/2995534.png">Press <span id="start-word">Start.</span></p>
+        <br>
+        <p><img class="heart" src="images/2995534.png">Press Left, Right, Up and Down Arrows.</p>
+        <img id="arrow" src="images/arrow-keys.png"/>
+      </div>
+      
     </div>
 
     <script type="text/javascript" src="./script.js"></script>

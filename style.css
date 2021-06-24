@@ -1,40 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+
 body {
-    display: flex;
-    margin: 0;
+  display: flex;
+  margin: 0;
+  font-family: 'Press Start 2P';
+  color: rebeccapurple;
 }
 
 #game-board {
-    width: 800px;
-    height: 700px;
-    background-color: pink;
+  width: 800px;
+  height: 700px;
+  background-color: pink;
 
 }
 
 #canvas {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 90px;
 }
 
 #game-intro {
-    width: 500px;
-    height: 700px;
-    background-color: rgb(194, 141, 243);
+  width: 500px;
+  height: 700px;
+  background-color: pink;
+}
+
+#intro-box {
+  width: 450px;
+  height: 520px;
+  border-radius: 40px;
+  background-color: rgb(250, 158, 173);
+  box-shadow: inset 0 0 1em rgb(250, 104, 128);
+  margin-top: 50px;
 }
 
 #start-btn {
-    padding: 30px 50px;
+    padding: 25px 40px;
     font-size: 2rem;
-    background-color: palevioletred;
+    background-color: rgb(250, 158, 173);
+    box-shadow: inset 0 0 1em rgb(250, 104, 128);
     border-style: none;
-    margin-top: 10px;
-    margin-left: 290px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-left: 260px;
+    font-family: 'Press Start 2P';
+    color: rebeccapurple;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  font-size: 12px;
 }
 
 #score-board {
-    margin-right: 200px;
+  margin-right: 200px;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: 'Press Start 2P';
+  background-image: linear-gradient(to left, violet, pink, indigo,magenta, red, blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+    font-size: 35px;
+    font-family: 'Press Start 2P';
+    color:rebeccapurple;   
+}
+
+.title {
+  padding-top: 20px ;
+  padding-left: 20px;
+  margin-left: 10px;
+  line-height: 10px;
+}
+
+#game-intro p { 
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+  line-height: 20px;
+  padding: 0px 50px;
+  color:rebeccapurple;
+}
+
+#canvas {
+  margin-top: 30px;
+}
+
+#veggies {
+  width: 70px;
+}
+
+.title hr {
+  border: 2px dotted rebeccapurple;
+  width: 360px;
+  margin: 0;
+}
+
+#start-word {
+  font-family: 'Press Start 2P';
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.heart {
+  width: 15px;
+  margin-right: 10px;
+  color: rebeccapurple;
+}
+
+#arrow {
+  width: 80px;
+  margin-left: 180px;
 }

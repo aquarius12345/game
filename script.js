@@ -24,7 +24,7 @@ window.onload = () => {
   //...................Start...............................
   function startGame() {
     const music = new Audio("./bensound-littleidea.mp3");
-    // music.play();
+    //music.play();
     updateCanvas();  
     
   }
@@ -101,6 +101,13 @@ window.onload = () => {
     ctx.fillStyle = 'pink';
     ctx.font = '50px Arial'
     ctx.fillText('GAME OVER', 150, 200);
+    //let img = new Image();
+    // img.src = "./images/game-over.png";
+
+    // img.onload = function () {
+    //   img;
+    // }
+    // ctx.drawImage(img, 150, 150, 100, 200);
   }
 
   //..................Background..............................
