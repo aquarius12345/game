@@ -1,6 +1,10 @@
 window.onload = () => {
-  document.getElementById('start-btn').onclick = () => {
+  document.getElementById('start').onclick = () => {
     startGame();
+  };
+
+  document.getElementById('reset').onclick = () => {
+    resetGame();
   };
 
   //..............Unicorn keyboard........................
@@ -25,8 +29,15 @@ window.onload = () => {
   function startGame() {
     const music = new Audio("./bensound-littleidea.mp3");
     //music.play();
-    updateCanvas();  
-    
+    init();
+    updateCanvas();   
+  }
+  
+  //...................Reset...............................
+  function resetGame() {
+    stopGame();
+    clearCanvas();
+    init();
   }
  //........................................................
   const canvas = document.getElementById("canvas");
@@ -37,10 +48,15 @@ window.onload = () => {
   const poisonBottles = [];
 
 
-  let animationId = null;
-  let frames = 0;
-  let score = 0;
-  let life = 5;
+  // let animationId = null;
+  // let frames = 0;
+  // let score = 0;
+  // let life = 5;
+
+  let animationId;
+  let frames;
+  let score;
+  let life;
 
   function updateCanvas() {
     frames += 1;
@@ -75,6 +91,14 @@ window.onload = () => {
     }else{
       animationId = requestAnimationFrame(updateCanvas); 
     }
+  }
+
+  //...................Init Variaveis Globais.................
+  function init() {
+    animationId = null;
+    frames = 0;
+    score = 0;
+    life = 5;
   }
 
   //...................Clear.................................
