@@ -7,7 +7,7 @@ window.onload = () => {
     resetGame();
   };
 
-  //..............Unicorn keyboard........................
+  //............Unicorn(Llama) keyboard...................
   document.addEventListener('keydown', (e) => {
     switch(e.key){
       case 'ArrowLeft':
@@ -24,8 +24,7 @@ window.onload = () => {
     }
   });
 
-
-  //...................Start...............................
+  //......................Start............................
   function startGame() {
     const music = new Audio("./bensound-littleidea.mp3");
     //music.play();
@@ -33,13 +32,14 @@ window.onload = () => {
     updateCanvas();   
   }
   
-  //...................Reset...............................
+  //......................Reset.............................
   function resetGame() {
     stopGame();
     clearCanvas();
     init();
   }
- //........................................................
+
+ //..........................................................
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext('2d');
   const scoreElement = document.getElementById('score');
@@ -47,6 +47,7 @@ window.onload = () => {
   const cupcakes = [];
   const poisonBottles = [];
 
+  const particlesArray = [];
 
   // let animationId = null;
   // let frames = 0;
@@ -57,7 +58,12 @@ window.onload = () => {
   let frames;
   let score;
   let life;
+  let hearts = new Image();
+  hearts.src = './images/hearts.png';
+  let skull = new Image();
+  skull.src = './images/skull.png';
 
+//....................UPDATE CANVAS............................
   function updateCanvas() {
     frames += 1;
     showScore();
@@ -71,7 +77,13 @@ window.onload = () => {
       if(unicorn.checkCollision(cupcakes[i])){
         cupcakes.splice(i, 1);
         score += 1;
-      }
+        
+        ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 40, 40);
+      
+        // img.onload = () => {
+        //   ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 50, 50); 
+        // }  
+      } 
     }
 
     updatePoisons();
@@ -79,66 +91,69 @@ window.onload = () => {
     for(let i=0; i<poisonBottles.length; i+=1) {
       if(unicorn.checkCollision(poisonBottles[i])){
         poisonBottles.splice(i, 1);
-        life -= 1;
+        life -= 1; 
+        
+        ctx.drawImage(skull, unicorn.posX, unicorn.posY, 40, 40);
       }  
     }
 
-    if(life <= 0){
-      stopGame();
-      setTimeout(() => {
-        gameOver();
-      },1500);
-    }else{
-      animationId = requestAnimationFrame(updateCanvas); 
+      if(life <= 0){
+        stopGame();
+        setTimeout(() => {
+          gameOver();
+        },1500);
+      }else{
+        animationId = requestAnimationFrame(updateCanvas); 
     }
   }
 
-  //...................Init Variaveis Globais.................
+  //..................Init Variaveis........................
   function init() {
     animationId = null;
     frames = 0;
     score = 0;
-    life = 5;
+    life = 2;
   }
 
-  //...................Clear.................................
+  //......................Clear.............................
   function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  //.................Show Score..............................
+  //...................Show Score............................
   function showScore() {
     scoreElement.innerHTML = score;
   }
   
-  //.................Life Points.............................
+  //...................Life Points...........................
   function showLife() {
     lifeElement.innerHTML = life;
   }
 
-  //.................Stop Game...............................
+  //....................Stop Game.............................
   function stopGame() {
     cancelAnimationFrame(animationId);
   }
 
-  //.................Game Over...............................
+  //....................Game Over.............................
   function gameOver() {
+    
     ctx.fillStyle = 'violet';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'pink';
     ctx.font = '50px Arial'
-    ctx.fillText('GAME OVER', 150, 200);
+    ctx.fillText('GAME OVER', 150, 170);
+    //ctx.drawImage('./images/game-over.png', 20, 40, 60, 60);
     
-    // let img = new Image();
-    // img.src = "./images/game-over.png";
+    let img = new Image();
+    img.src = "./images/game-over.png";
 
-    // img.onload = function () {
-    //   img;
-    // }
-    // ctx.drawImage(img, 150, 150, 100, 200);
+    img.onload = function () {
+      ctx.drawImage(img, 220, 200, 150, 90);
+    } 
   }
 
-  //..................Background..............................
+  //....................Background.............................
   class Background {
     constructor(source) {
       this.posX = 0;
@@ -157,7 +172,7 @@ window.onload = () => {
   }
   const background = new Background("./images/mountain-night.png");
 
-  //.....................Unicorn.................................
+  //...................Unicorn(Llama).............................
   class Unicorn {
     constructor(source, x, y, w, h){
       this.posX = x;
@@ -229,7 +244,7 @@ window.onload = () => {
 
   const unicorn = new Unicorn("./images/llama-pixel.png", 220, 250, 180, 150);
 
-  //......................Cupcakes.................................
+  //...................Cupcakes(Organic food)..........................
   class Obstacle {
     constructor(source, x, y, w, h, s){
       this.posX = x;
@@ -304,4 +319,5 @@ window.onload = () => {
     }
   }
 
+ 
 }
