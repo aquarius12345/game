@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
 
 body {
   display: flex;
@@ -63,9 +64,9 @@ body {
 }
 
 h1 {
-  font-size: 50px;
-  font-family: 'Press Start 2P';
-  background-image: linear-gradient(to left, violet, pink, indigo,magenta, red, blue);
+  font-size: 70px;
+  font-family: 'Sigmar One';
+  background-image: linear-gradient(to left, violet, indigo,magenta, red, blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

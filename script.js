@@ -24,7 +24,7 @@ window.onload = () => {
     }
   });
 
-  //......................Start............................
+  //......................Start..............................
   function startGame() {
     const music = new Audio("./bensound-littleidea.mp3");
     //music.play();
@@ -58,12 +58,14 @@ window.onload = () => {
   let frames;
   let score;
   let life;
+
   let hearts = new Image();
   hearts.src = './images/hearts.png';
+
   let skull = new Image();
   skull.src = './images/skull.png';
 
-//....................UPDATE CANVAS............................
+//.....................UPDATE CANVAS............................
   function updateCanvas() {
     frames += 1;
     showScore();
@@ -77,13 +79,12 @@ window.onload = () => {
       if(unicorn.checkCollision(cupcakes[i])){
         cupcakes.splice(i, 1);
         score += 1;
-        
         ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 40, 40);
-      
+    
         // img.onload = () => {
         //   ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 50, 50); 
         // }  
-      } 
+      }; 
     }
 
     updatePoisons();
@@ -284,7 +285,7 @@ window.onload = () => {
   }
 
   
-  function createCupcake() {
+  function createCupcake() { //cupcake---> Organic food
     const posX = Math.floor(Math.random()*400) + 20;
     
     // const cupcake = new Obstacle("./images/cupcake.png", posX, posY, 60, 60);
@@ -297,7 +298,7 @@ window.onload = () => {
       cupcakes[i].move();
       cupcakes[i].draw(); 
     }
-    if(frames % 30 === 0) {
+    if(frames % 60 === 0) {
       createCupcake();
     }
   }
