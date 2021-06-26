@@ -58,6 +58,8 @@ window.onload = () => {
   let frames;
   let score;
   let life;
+  let showHearts = false;
+  let showSkull = false;
 
   let hearts = new Image();
   hearts.src = './images/hearts.png';
@@ -79,23 +81,32 @@ window.onload = () => {
       if(unicorn.checkCollision(cupcakes[i])){
         cupcakes.splice(i, 1);
         score += 1;
-        ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 40, 40);
-    
-        // img.onload = () => {
-        //   ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 50, 50); 
-        // }  
+        showHearts = true;
       }; 
     }
 
+    if(showHearts) {
+      ctx.drawImage(hearts, unicorn.posX, unicorn.posY, 40, 40);
+      setTimeout(() => {
+        showHearts = false;
+      }, 500);
+    }
+    
     updatePoisons();
 
     for(let i=0; i<poisonBottles.length; i+=1) {
       if(unicorn.checkCollision(poisonBottles[i])){
         poisonBottles.splice(i, 1);
         life -= 1; 
-        
-        ctx.drawImage(skull, unicorn.posX, unicorn.posY, 40, 40);
-      }  
+        showSkull = true;
+      };  
+    }
+
+    if(showSkull) {
+      ctx.drawImage(skull, unicorn.posX, unicorn.posY, 35, 35);
+      setTimeout(()=> {
+        showSkull = false;
+      }, 500);
     }
 
       if(life <= 0){
@@ -113,7 +124,7 @@ window.onload = () => {
     animationId = null;
     frames = 0;
     score = 0;
-    life = 2;
+    life = 3;
   }
 
   //......................Clear.............................
@@ -245,7 +256,7 @@ window.onload = () => {
 
   const unicorn = new Unicorn("./images/llama-pixel.png", 220, 250, 180, 150);
 
-  //...................Cupcakes(Organic food)..........................
+  //...................Cupcakes = (Organic food)........................
   class Obstacle {
     constructor(source, x, y, w, h, s){
       this.posX = x;
@@ -284,8 +295,8 @@ window.onload = () => {
     }
   }
 
-  
-  function createCupcake() { //cupcake---> Organic food
+  //cupcake---> Organic food
+  function createCupcake() {  
     const posX = Math.floor(Math.random()*400) + 20;
     
     // const cupcake = new Obstacle("./images/cupcake.png", posX, posY, 60, 60);
