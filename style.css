@@ -9,12 +9,15 @@ body {
   margin: 0;
   font-family: 'Press Start 2P';
   color: rebeccapurple;
+  background-image: url("./images/paisagem-de-montanhas-com-montanhas-e-por-do-sol_23-2148281354.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #game-board {
   width: 800px;
   height: 700px;
-  background-color: pink;
+  
 }
 
 #canvas {
@@ -25,14 +28,15 @@ body {
 #game-intro {
   width: 500px;
   height: 700px;
-  background-color: pink;
+
 }
 
 #intro-box {
   width: 450px;
   height: 520px;
   border-radius: 40px;
-  background-color: rgb(250, 158, 173);
+  background-color: pink;
+  opacity: 0.8;
   box-shadow: inset 0 0 1em rgb(250, 104, 128);
   margin-top: 50px;
 }
@@ -41,6 +45,7 @@ body {
     padding: 20px 25px;
     font-size: 1.5rem;
     background-color: rgb(250, 158, 173);
+    opacity: 0.8;
     box-shadow: inset 0 0 1em rgb(250, 104, 128);
     border-style: none;
     border-radius: 20px;

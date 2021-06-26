@@ -49,11 +49,6 @@ window.onload = () => {
 
   const particlesArray = [];
 
-  // let animationId = null;
-  // let frames = 0;
-  // let score = 0;
-  // let life = 5;
-
   let animationId;
   let frames;
   let score;
