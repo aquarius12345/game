@@ -26,8 +26,9 @@ window.onload = () => {
 
   //......................Start..............................
   function startGame() {
-    const music = new Audio("./bensound-littleidea.mp3");
-    //music.play();
+    // const music = new Audio("./bensound-littleidea.mp3");
+    // music.volume = 0.2;
+    music.play();
     init();
     updateCanvas();   
   }
@@ -36,6 +37,8 @@ window.onload = () => {
   function resetGame() {
     stopGame();
     clearCanvas();
+    music.pause();
+    music.currentTime = 0;
     init();
   }
 
@@ -47,7 +50,8 @@ window.onload = () => {
   const cupcakes = [];
   const poisonBottles = [];
 
-  const particlesArray = [];
+  const music = new Audio("./bensound-littleidea.mp3");
+  music.volume = 0.2;
 
   let animationId;
   let frames;
