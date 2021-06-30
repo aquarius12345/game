@@ -39,7 +39,6 @@ window.onload = () => {
     clearCanvas();
     music.pause();
     music.currentTime = 0;
-    init();
   }
 
  //..........................................................
@@ -51,7 +50,7 @@ window.onload = () => {
   const poisonBottles = [];
 
   const music = new Audio("./bensound-littleidea.mp3");
-  music.volume = 0.2;
+  music.volume = 0.1;
 
   let animationId;
   let frames;
@@ -123,7 +122,7 @@ window.onload = () => {
     animationId = null;
     frames = 0;
     score = 0;
-    life = 3;
+    life = 1;
   }
 
   //......................Clear.............................
@@ -148,7 +147,6 @@ window.onload = () => {
 
   //....................Game Over.............................
   function gameOver() {
-    
     ctx.fillStyle = 'violet';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'pink';
@@ -185,32 +183,47 @@ window.onload = () => {
 
   //...................Unicorn(Llama).............................
   class Unicorn {
-    constructor(source, x, y, w, h){
+    constructor(x, y, w, h){
       this.posX = x;
       this.posY = y;
       this.width = w;
       this.height = h;
       this.speed = 50;
+      this.direction = 'esquerda';
 
-      const img = new Image();
-      img.src = source;
-      img.onload = () => {
-        this.img = img;
+      const imgA = new Image();
+      imgA.src = './images/llama-pixel.png';
+      imgA.onload = () => {
+        this.imgA = imgA;
+      }
+
+      const imgB = new Image();
+      imgB.src = './images/llama2.png';
+      imgB.onload = () => {
+        this.imgB = imgB;
       }
     }
+
     draw() {
-      ctx.drawImage(this.img, this.posX, this.posY, this.width, this.height);
+      if(this.direction === 'esquerda'){
+        ctx.drawImage(this.imgA, this.posX, this.posY, this.width, this.height);
+      }
+      if(this.direction === 'direita'){
+        ctx.drawImage(this.imgB, this.posX, this.posY, this.width, this.height);
+      }
     }
 
     moveLeft() {
       if(this.posX > 20){
+        this.direction = 'esquerda';
         this.posX -= this.speed;
       }
       
     }
 
     moveRight() {
-      if(this.posX < 450){
+      if(this.posX < 400){
+        this.direction = 'direita';
         this.posX += this.speed;
       } 
     }
@@ -253,7 +266,7 @@ window.onload = () => {
     }
   }
 
-  const unicorn = new Unicorn("./images/llama-pixel.png", 220, 250, 180, 150);
+  const unicorn = new Unicorn(220, 250, 180, 150);
 
   //...................Cupcakes = (Organic food)........................
   class Obstacle {
@@ -294,7 +307,7 @@ window.onload = () => {
     }
   }
 
-  //cupcake---> Organic food
+  //cupcake-------------> Organic food
   function createCupcake() {  
     const posX = Math.floor(Math.random()*400) + 20;
     
