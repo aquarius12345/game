@@ -111,7 +111,7 @@ window.onload = () => {
         stopGame();
         setTimeout(() => {
           gameOver();
-        },1500);
+        },1000);
       }else{
         animationId = requestAnimationFrame(updateCanvas); 
     }
