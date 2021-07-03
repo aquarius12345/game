@@ -143,6 +143,7 @@ window.onload = () => {
   //....................Stop Game.............................
   function stopGame() {
     cancelAnimationFrame(animationId);
+    lifeElement.innerHTML = 0;
   }
 
   //....................Game Over.............................
