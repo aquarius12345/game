@@ -39,6 +39,8 @@ window.onload = () => {
     clearCanvas();
     music.pause();
     music.currentTime = 0;
+    scoreElement.innerHTML = 0;
+    lifeElement.innerHTML = 0;
   }
 
  //..........................................................
