@@ -56,6 +56,10 @@ body {
     color: rebeccapurple;
 }
 
+.btn:hover {
+  border:none!important;
+}
+
 .container {
   display: flex;
   justify-content: center;
