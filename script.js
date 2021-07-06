@@ -150,7 +150,7 @@ window.onload = () => {
 
   //....................Game Over.............................
   function gameOver() {
-    ctx.fillStyle = 'violet';
+    ctx.fillStyle = 'rgb(150, 13, 171, 0.7)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'pink';
     ctx.font = '50px Arial'
